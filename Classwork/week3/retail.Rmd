@@ -1,0 +1,60 @@
+---
+title: "retail"
+output: word_document
+author: "Joyce Woznica"
+date: "October 19,2019"
+---
+
+This is a tutorial uses R package "arules" to analyze the market basket data. 
+
+# Load the libraries
+```{r}
+# install.packages(arules)
+# install.packages(arulesViz)
+library(arules)
+library(arulesViz)
+```
+
+# Load the dataset
+```{r}
+retail <- read.transactions("C:/Users/Joyce/Desktop/Syracuse/IST707/Classwork/week3/retail.csv", format="basket", sep=",")
+```
+
+# We can explore the data before we make any rules. The following script is going to create an item frequency plot for the top 20 items.
+# "type" indicates whether item frequencies should be displayed relative or absolute
+```{r}
+itemFrequencyPlot(retail,topN=20,type="absolute")
+```
+
+# Mine rules with the Association Rule algorithm. 
+# It is required to set the minimum support and confidence values.
+```{r}
+rules <- apriori(retail, parameter = list(supp = 0.001, conf = 0.8,maxlen=3))
+```
+
+# Show the top 5 rules, rounding with 2 digits
+# From the top 5 rules, we could notice that the rule {bottled beer, soups} => {whole milk} is strong, indicating bottled beer and soups are frequently bought together with whole milk. So we would suggest to place these items close to each other.
+```{r}
+options(digits=2)
+inspect(rules[1:5])
+```
+
+# Get summary info about all rules
+```{r}
+summary(rules)
+```
+
+# Sort rules so that we can view the most relevant rules first. For example, sort rules with "confidence":
+```{r}
+rules<-sort(rules, by="confidence", decreasing=TRUE)
+subset.matrix <- is.subset(rules, rules)
+subset.matrix[lower.tri(subset.matrix, diag=T)] <- NA
+redundant <- colSums(subset.matrix, na.rm=T) >= 1
+rules.pruned <- rules[!redundant]
+rules<-rules.pruned
+```
+
+# Visualize the rules
+```{r}
+#plot(rules,method="graph",interactive=TRUE,shading=NA)
+```

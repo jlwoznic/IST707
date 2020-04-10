@@ -1,0 +1,13 @@
+
+Read:  
+
+1 - http://bits.blogs.nytimes.com/2014/03/28/google-flu-trends-the-limits-of-big-data/
+2 - http://www.theatlantic.com/technology/archive/2014/03/in-defense-of-google-flu-trends/359688/
+
+Activity:
+
+Debate. Half of the group, build an argument to support the use of Big Data within this application.
+The other half of the group, build an argument to discredit the use of Big Data within this application.
+
+What are the key factors? What is the underlying Science? Why are the arguments valid?
+

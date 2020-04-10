@@ -1,0 +1,7 @@
+3. Instruction on increasing java heapsize for Weka: For both windows and mac, go to the folder where your weka.jar is located, then use the following command to launch your weka GUI. In this command the memory size is set to 1g, you can choose to increase or decrease based on your computer config.
+
+    "java -Xmx1g -jar weka.jar" 
+
+If you have difficulty finding your weka.jar on mac, see if the following tip helps. On my mac I don't have the VMOptions, but I do find weka.jar under the same folder. You can then use the "Get Info" to find the entire path.
+
+    Go to Application==> Left click on specific application (like Weka)==> Show Package Content==> Contents==>Info.Plist==>Java==> VMOptions==> increase the size of memory as you want (in my mac the default was 1 Gb, I increased to 6 Gb)
